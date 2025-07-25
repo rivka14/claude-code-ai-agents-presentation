@@ -1,0 +1,1398 @@
+/* ==========================================================================
+   AI Agents Presentation - Modern Futuristic Theme
+   ========================================================================== */
+
+/* CSS Custom Properties (Variables) */
+:root {
+  /* Color Palette */
+  --primary-bg: #0a0a0f;
+  --secondary-bg: #1a1a2e;
+  --accent-bg: #16213e;
+  --neon-blue: #00d4ff;
+  --neon-purple: #8a2be2;
+  --neon-cyan: #00ffff;
+  --text-primary: #ffffff;
+  --text-secondary: #b8c5d6;
+  --text-muted: #6b7280;
+  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-2: linear-gradient(45deg, #00d4ff, #8a2be2);
+  --gradient-3: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease-out;
+  --transition-medium: 0.4s ease-out;
+  --transition-slow: 0.8s ease-out;
+  
+  /* Effects */
+  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --border-radius: 12px;
+}
+
+/* ==========================================================================
+   Base Styles & Reset
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--primary-bg);
+  color: var(--text-primary);
+  overflow: hidden;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Loading Screen
+   ========================================================================== */
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--primary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(0, 212, 255, 0.1);
+  border-left: 3px solid var(--neon-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--spacing-md);
+}
+
+.loading-text {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+  font-weight: 500;
+}
+
+.loading-progress {
+  width: 200px;
+  height: 3px;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.loading-bar {
+  height: 100%;
+  background: var(--gradient-2);
+  width: 0%;
+  animation: loadingProgress 2s ease-out forwards;
+}
+
+.loading-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%2300d4ff" opacity="0.3"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1" fill="%238a2be2" opacity="0.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/></circle><circle cx="60" cy="70" r="1" fill="%2300ffff" opacity="0.4"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/></circle></svg>') repeat;
+  animation: particleFloat 10s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes loadingProgress {
+  to { width: 100%; }
+}
+
+@keyframes particleFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
+}
+
+/* ==========================================================================
+   Main Presentation Container
+   ========================================================================== */
+
+.presentation {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background Effects */
+.background-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(26, 26, 46, 0.8) 0%, var(--primary-bg) 70%);
+  animation: gradientShift 20s ease-in-out infinite;
+}
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(2px 2px at 20px 30px, var(--neon-blue), transparent),
+    radial-gradient(2px 2px at 40px 70px, var(--neon-purple), transparent),
+    radial-gradient(1px 1px at 90px 40px, var(--neon-cyan), transparent),
+    radial-gradient(1px 1px at 130px 80px, var(--neon-blue), transparent),
+    radial-gradient(2px 2px at 160px 30px, var(--neon-purple), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: particlesMove 30s linear infinite;
+  opacity: 0.3;
+}
+
+.geometric-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.geometric-shapes::before,
+.geometric-shapes::after {
+  content: '';
+  position: absolute;
+  border: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.geometric-shapes::before {
+  top: 10%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  transform: rotate(45deg);
+  animation: shapeRotate 15s linear infinite;
+}
+
+.geometric-shapes::after {
+  bottom: 15%;
+  left: 5%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  animation: shapePulse 8s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(2deg) scale(1.05); }
+}
+
+@keyframes particlesMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(200px); }
+}
+
+@keyframes shapeRotate {
+  from { transform: rotate(45deg); }
+  to { transform: rotate(405deg); }
+}
+
+@keyframes shapePulse {
+  0%, 100% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.2); opacity: 0.3; }
+}
+
+/* ==========================================================================
+   Progress & Navigation Elements
+   ========================================================================== */
+
+.progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 212, 255, 0.1);
+  z-index: 1000;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gradient-2);
+  width: 16.66%;
+  transition: width var(--transition-medium);
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.slide-counter {
+  position: fixed;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(10px);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-secondary);
+  z-index: 1000;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+/* ==========================================================================
+   Slides Container & Base Slide Styles
+   ========================================================================== */
+
+.slides-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all var(--transition-slow);
+  padding: var(--spacing-xl);
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide.prev {
+  transform: translateX(-100px);
+}
+
+.slide-content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  animation: slideContentFadeIn var(--transition-slow) ease-out;
+}
+
+.slide.active .slide-content {
+  animation: slideContentFadeIn var(--transition-slow) ease-out;
+}
+
+@keyframes slideContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Typography Styles
+   ========================================================================== */
+
+.slide-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+  background: var(--gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-2);
+  margin: 0 auto var(--spacing-xl);
+  border-radius: 2px;
+  animation: underlineGrow var(--transition-medium) ease-out;
+}
+
+.slide.active .title-underline {
+  animation: underlineGrow var(--transition-medium) ease-out 0.3s;
+}
+
+@keyframes underlineGrow {
+  from { width: 0; }
+  to { width: 80px; }
+}
+
+/* ==========================================================================
+   Title Slide (Slide 1) Styles
+   ========================================================================== */
+
+.title-container {
+  position: relative;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.main-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-lg);
+}
+
+.title-line {
+  display: block;
+  color: var(--text-primary);
+  animation: titleSlideIn var(--transition-slow) ease-out;
+}
+
+.title-highlight {
+  display: block;
+  background: var(--gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  animation: titleSlideIn var(--transition-slow) ease-out 0.3s;
+}
+
+.title-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 3px;
+  background: var(--gradient-2);
+  animation: titleUnderline var(--transition-slow) ease-out 0.8s;
+}
+
+.subtitle-container {
+  position: relative;
+}
+
+.subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: var(--spacing-md);
+  animation: subtitleFadeIn var(--transition-slow) ease-out 1s;
+}
+
+.subtitle-accent {
+  width: 100px;
+  height: 2px;
+  background: var(--neon-cyan);
+  margin: 0 auto;
+  animation: accentGlow var(--transition-slow) ease-out 1.2s;
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.title-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ai-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.ai-icon {
+  font-size: 6rem;
+  color: var(--neon-blue);
+  animation: iconFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px var(--neon-blue));
+}
+
+.icon-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 50%;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes titleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleUnderline {
+  from { width: 0; }
+  to { width: 200px; }
+}
+
+@keyframes subtitleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes accentGlow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100px;
+    opacity: 1;
+  }
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+}
+
+/* ==========================================================================
+   Slide 2: What are AI Agents Styles
+   ========================================================================== */
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xxl);
+  align-items: start;
+  margin-top: var(--spacing-xl);
+}
+
+.definition-card {
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(15px);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  text-align: center;
+  animation: cardSlideUp var(--transition-slow) ease-out;
+}
+
+.card-icon {
+  margin-bottom: var(--spacing-lg);
+}
+
+.card-icon i {
+  font-size: 4rem;
+  color: var(--neon-purple);
+  animation: iconGlow 2s ease-in-out infinite;
+}
+
+.definition-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.definition-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(138, 43, 226, 0.1);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--neon-purple);
+  animation: featureSlideIn var(--transition-medium) ease-out;
+  transition: all var(--transition-fast);
+}
+
+.feature-item:hover {
+  background: rgba(138, 43, 226, 0.2);
+  transform: translateX(10px);
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.2s; }
+.feature-item:nth-child(2) { animation-delay: 0.4s; }
+.feature-item:nth-child(3) { animation-delay: 0.6s; }
+.feature-item:nth-child(4) { animation-delay: 0.8s; }
+
+.feature-icon {
+  font-size: 1.5rem;
+  color: var(--neon-purple);
+  flex-shrink: 0;
+}
+
+.feature-item span {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconGlow {
+  0%, 100% { filter: drop-shadow(0 0 10px var(--neon-purple)); }
+  50% { filter: drop-shadow(0 0 20px var(--neon-purple)); }
+}
+
+@keyframes featureSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================================================
+   Slide 3: Key Capabilities Styles
+   ========================================================================== */
+
+.capabilities-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.capability-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: rgba(22, 33, 62, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  transition: all var(--transition-medium);
+  animation: capabilityFadeIn var(--transition-slow) ease-out;
+  animation-fill-mode: both;
+}
+
+.capability-item:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--neon-cyan);
+}
+
+.capability-item[data-delay="0"] { animation-delay: 0.2s; }
+.capability-item[data-delay="200"] { animation-delay: 0.4s; }
+.capability-item[data-delay="400"] { animation-delay: 0.6s; }
+.capability-item[data-delay="600"] { animation-delay: 0.8s; }
+
+.capability-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-2);
+  border-radius: 50%;
+  margin-top: var(--spacing-xs);
+}
+
+.capability-icon i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.capability-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-primary);
+}
+
+.capability-content p {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@keyframes capabilityFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   Slide 4: Real-World Applications Styles
+   ========================================================================== */
+
+.applications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.application-card {
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-medium);
+  cursor: pointer;
+  animation: applicationSlideIn var(--transition-slow) ease-out;
+}
+
+.application-card:hover,
+.application-card:focus {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--neon-blue);
+  outline: none;
+}
+
+.application-card:nth-child(1) { animation-delay: 0.1s; }
+.application-card:nth-child(2) { animation-delay: 0.2s; }
+.application-card:nth-child(3) { animation-delay: 0.3s; }
+.application-card:nth-child(4) { animation-delay: 0.4s; }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.card-header i {
+  font-size: 2rem;
+  color: var(--neon-blue);
+  animation: cardIconPulse 3s ease-in-out infinite;
+}
+
+.card-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-body p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.5;
+}
+
+.card-stats {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.stat {
+  background: var(--gradient-2);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@keyframes applicationSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) rotateX(15deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+@keyframes cardIconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* ==========================================================================
+   Slide 5: Timeline Styles
+   ========================================================================== */
+
+.timeline-container {
+  margin-top: var(--spacing-xl);
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--gradient-2);
+  transform: translateX(-50%);
+  animation: timelineGrow 2s ease-out;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--spacing-xxl);
+  animation: timelineItemSlide var(--transition-slow) ease-out;
+  animation-fill-mode: both;
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0.2s; }
+.timeline-item:nth-child(2) { animation-delay: 0.4s; }
+.timeline-item:nth-child(3) { animation-delay: 0.6s; }
+.timeline-item:nth-child(4) { animation-delay: 0.8s; }
+
+.timeline-item::before {
+  content: attr(data-year);
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  background: var(--primary-bg);
+  color: var(--neon-cyan);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 2px solid var(--neon-cyan);
+  z-index: 2;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  width: 15px;
+  height: 15px;
+  background: var(--neon-blue);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 20px var(--neon-blue);
+  z-index: 2;
+  animation: markerPulse 2s ease-in-out infinite;
+}
+
+.timeline-content {
+  background: rgba(22, 33, 62, 0.8);
+  backdrop-filter: blur(15px);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  margin-top: 60px;
+  transition: all var(--transition-medium);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-right: 60%;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: 60%;
+  text-align: left;
+}
+
+.timeline-content:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow);
+}
+
+.timeline-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.timeline-content p {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@keyframes timelineGrow {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+@keyframes timelineItemSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes markerPulse {
+  0%, 100% { 
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 0 20px var(--neon-blue);
+  }
+  50% { 
+    transform: translateX(-50%) scale(1.2);
+    box-shadow: 0 0 30px var(--neon-blue);
+  }
+}
+
+/* ==========================================================================
+   Slide 6: Thank You Styles
+   ========================================================================== */
+
+.thank-you-container {
+  text-align: center;
+}
+
+.thank-you-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  background: var(--gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--spacing-md);
+  animation: thankYouSlide var(--transition-slow) ease-out;
+}
+
+.thank-you-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xxl);
+  animation: thankYouSlide var(--transition-slow) ease-out 0.3s;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xxl);
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 30px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  transition: all var(--transition-medium);
+  animation: contactItemFade var(--transition-slow) ease-out;
+  animation-fill-mode: both;
+}
+
+.contact-item:nth-child(1) { animation-delay: 0.5s; }
+.contact-item:nth-child(2) { animation-delay: 0.7s; }
+.contact-item:nth-child(3) { animation-delay: 0.9s; }
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--neon-blue);
+}
+
+.contact-item i {
+  font-size: 1.2rem;
+  color: var(--neon-blue);
+}
+
+.contact-item span {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.closing-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ai-network {
+  position: relative;
+  width: 200px;
+  height: 100px;
+}
+
+.network-node {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--neon-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--neon-cyan);
+  animation: nodeFloat 3s ease-in-out infinite;
+}
+
+.network-node:nth-child(1) {
+  top: 20px;
+  left: 20px;
+  animation-delay: 0s;
+}
+
+.network-node:nth-child(2) {
+  top: 20px;
+  right: 20px;
+  animation-delay: 1s;
+}
+
+.network-node:nth-child(3) {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 2s;
+}
+
+.network-connections {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100"><path d="M30 30 L170 30 L100 80 Z" stroke="%2300ffff" stroke-width="1" fill="none" opacity="0.3"/></svg>');
+  animation: connectionsPulse 4s ease-in-out infinite;
+}
+
+@keyframes thankYouSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contactItemFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nodeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes connectionsPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* ==========================================================================
+   Mini Navigation
+   ========================================================================== */
+
+.mini-nav {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--spacing-sm);
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(15px);
+  padding: var(--spacing-sm);
+  border-radius: 30px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  z-index: 1000;
+}
+
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 212, 255, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.nav-dot:hover {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.nav-dot.active {
+  background: var(--neon-blue);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 15px var(--neon-blue);
+}
+
+/* ==========================================================================
+   Controls Info
+   ========================================================================== */
+
+.controls-info {
+  position: fixed;
+  bottom: var(--spacing-md);
+  right: var(--spacing-md);
+  display: flex;
+  gap: var(--spacing-sm);
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(15px);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  z-index: 1000;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.controls-info:hover {
+  opacity: 1;
+}
+
+.control-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.control-item kbd {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--neon-blue);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+/* ==========================================================================
+   Sound Toggle
+   ========================================================================== */
+
+.sound-toggle {
+  position: fixed;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(15px);
+  color: var(--neon-blue);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sound-toggle:hover {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 15px var(--neon-blue);
+  transform: scale(1.1);
+}
+
+.sound-toggle.muted {
+  color: var(--text-muted);
+  border-color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Fullscreen Mode
+   ========================================================================== */
+
+.presentation.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+}
+
+.presentation.fullscreen .controls-info,
+.presentation.fullscreen .slide-counter,
+.presentation.fullscreen .sound-toggle {
+  opacity: 0.3;
+  transition: opacity var(--transition-fast);
+}
+
+.presentation.fullscreen:hover .controls-info,
+.presentation.fullscreen:hover .slide-counter,
+.presentation.fullscreen:hover .sound-toggle {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Presentation Mode (Auto-hide cursor)
+   ========================================================================== */
+
+.presentation.presentation-mode {
+  cursor: none;
+}
+
+.presentation.presentation-mode * {
+  cursor: none !important;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    margin: 60px var(--spacing-md) 0;
+    text-align: center;
+  }
+  
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+  
+  .capabilities-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide {
+    padding: var(--spacing-lg);
+  }
+  
+  .slide-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+  
+  .main-title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+  
+  .applications-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .capability-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .controls-info {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .mini-nav {
+    bottom: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .slide {
+    padding: var(--spacing-md);
+  }
+  
+  .title-highlight::after {
+    width: 150px;
+  }
+  
+  .ai-icon {
+    font-size: 4rem;
+  }
+  
+  .icon-pulse {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .definition-card,
+  .capability-item,
+  .application-card,
+  .timeline-content {
+    padding: var(--spacing-md);
+  }
+}
+
+/* ==========================================================================
+   Touch Support
+   ========================================================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  .slide {
+    touch-action: pan-x;
+  }
+  
+  .capability-item:hover,
+  .application-card:hover,
+  .timeline-content:hover {
+    transform: none;
+  }
+  
+  .nav-dot:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: none;
+  }
+  
+  .controls-info {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   High Contrast Mode Support
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --text-secondary: #ffffff;
+    --text-muted: #cccccc;
+  }
+  
+  .slide-title,
+  .main-title .title-highlight {
+    -webkit-text-fill-color: var(--neon-blue);
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Support
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .particles-container,
+  .geometric-shapes::before,
+  .geometric-shapes::after {
+    animation: none;
+  }
+}
