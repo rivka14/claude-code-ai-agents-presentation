@@ -20,8 +20,6 @@ class PresentationController {
     this.slides = document.querySelectorAll('.slide');
     this.navDots = document.querySelectorAll('.nav-dot');
     this.progressFill = document.querySelector('.progress-fill');
-    this.currentSlideCounter = document.getElementById('current-slide');
-    this.totalSlidesCounter = document.getElementById('total-slides');
     this.soundToggle = document.getElementById('sound-toggle');
     this.loadingScreen = document.getElementById('loading-screen');
     this.controlsInfo = document.getElementById('controls-info');
@@ -34,7 +32,6 @@ class PresentationController {
    */
   init() {
     this.setupEventListeners();
-    this.updateSlideCounter();
     this.updateProgress();
     this.updateNavDots();
     this.setupParticles();
@@ -260,7 +257,6 @@ class PresentationController {
     }, 50);
     
     // Update UI elements
-    this.updateSlideCounter();
     this.updateProgress();
     this.updateNavDots();
     this.updateURL();
@@ -273,13 +269,6 @@ class PresentationController {
     this.announceSlideChange();
   }
   
-  /**
-   * Update slide counter display
-   */
-  updateSlideCounter() {
-    this.currentSlideCounter.textContent = this.currentSlide;
-    this.totalSlidesCounter.textContent = this.totalSlides;
-  }
   
   /**
    * Update progress bar
@@ -493,7 +482,7 @@ class PresentationController {
     const slide = this.slides[slideNumber - 1];
     
     // Reset animations
-    const animatedElements = slide.querySelectorAll('[data-delay], .capability-item, .feature-item, .application-card, .timeline-item, .contact-item');
+    const animatedElements = slide.querySelectorAll('[data-delay], .component-item, .technology-item, .description-content, .diagram-container');
     animatedElements.forEach(element => {
       element.style.animation = 'none';
       element.offsetHeight; // Trigger reflow
@@ -502,52 +491,69 @@ class PresentationController {
     
     // Specific animations for different slides
     switch (slideNumber) {
-      case 3: // Capabilities slide
-        this.animateCapabilities(slide);
+      case 2: // Agent components slide
+        this.animateComponents(slide);
         break;
-      case 4: // Applications slide
-        this.animateApplications(slide);
+      case 3: // ETL description slide
+        this.animateDescription(slide);
         break;
-      case 5: // Timeline slide
-        this.animateTimeline(slide);
+      case 4: // Architecture slide
+        this.animateArchitecture(slide);
+        break;
+      case 5: // Technologies slide
+        this.animateTechnologies(slide);
         break;
     }
   }
   
   /**
-   * Animate capabilities slide
+   * Animate agent components slide
    */
-  animateCapabilities(slide) {
-    const capabilities = slide.querySelectorAll('.capability-item');
-    capabilities.forEach((item, index) => {
+  animateComponents(slide) {
+    const components = slide.querySelectorAll('.component-item');
+    components.forEach((item, index) => {
       setTimeout(() => {
         item.style.transform = 'translateY(0) scale(1)';
         item.style.opacity = '1';
-      }, index * 200);
+      }, index * 300);
     });
   }
   
   /**
-   * Animate applications slide
+   * Animate ETL description slide
    */
-  animateApplications(slide) {
-    const applications = slide.querySelectorAll('.application-card');
-    applications.forEach((card, index) => {
+  animateDescription(slide) {
+    const description = slide.querySelector('.description-content');
+    if (description) {
       setTimeout(() => {
-        card.style.transform = 'translateY(0) rotateX(0)';
-        card.style.opacity = '1';
-      }, index * 150);
-    });
+        description.style.transform = 'translateY(0)';
+        description.style.opacity = '1';
+      }, 200);
+    }
   }
   
   /**
-   * Animate timeline slide
+   * Animate architecture slide
    */
-  animateTimeline(slide) {
-    const timelineItems = slide.querySelectorAll('.timeline-item');
-    timelineItems.forEach((item, index) => {
+  animateArchitecture(slide) {
+    const diagramContainer = slide.querySelector('.diagram-container');
+    
+    if (diagramContainer) {
       setTimeout(() => {
-        item.style.transform = 'translateX(0)';
+        diagramContainer.style.transform = 'translateY(0) scale(1)';
+        diagramContainer.style.opacity = '1';
+      }, 200);
+    }
+  }
+  
+  /**
+   * Animate technologies slide
+   */
+  animateTechnologies(slide) {
+    const technologies = slide.querySelectorAll('.technology-item');
+    technologies.forEach((item, index) => {
+      setTimeout(() => {
+        item.style.transform = 'translateY(0) scale(1)';
         item.style.opacity = '1';
       }, index * 300);
     });
@@ -598,7 +604,7 @@ class PresentationController {
       slide.setAttribute('aria-hidden', index + 1 !== this.currentSlide);
     });
     
-    // Update aria-hidden on slide change
+    // Update aria-hidden on slide change  
     const originalGoToSlide = this.goToSlide.bind(this);
     this.goToSlide = function(slideNumber) {
       originalGoToSlide(slideNumber);
@@ -606,7 +612,7 @@ class PresentationController {
       this.slides.forEach((slide, index) => {
         slide.setAttribute('aria-hidden', index + 1 !== this.currentSlide);
       });
-    };
+    }.bind(this);
   }
   
   /**

@@ -280,20 +280,6 @@ body {
   box-shadow: 0 0 10px var(--neon-blue);
 }
 
-.slide-counter {
-  position: fixed;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  background: rgba(26, 26, 46, 0.8);
-  backdrop-filter: blur(10px);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius);
-  font-family: var(--font-heading);
-  font-weight: 600;
-  color: var(--text-secondary);
-  z-index: 1000;
-  border: 1px solid rgba(0, 212, 255, 0.2);
-}
 
 /* ==========================================================================
    Slides Container & Base Slide Styles
@@ -532,8 +518,335 @@ body {
 }
 
 /* ==========================================================================
-   Slide 2: What are AI Agents Styles
+   Slide 2: What is an Agent Styles
    ========================================================================== */
+
+.agent-components {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xxl);
+  margin-top: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.component-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  transition: all var(--transition-medium);
+  animation: componentSlideIn var(--transition-slow) ease-out;
+  animation-fill-mode: both;
+  min-width: 200px;
+}
+
+.component-item:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--neon-blue);
+}
+
+.component-item[data-delay="0"] { animation-delay: 0.2s; }
+.component-item[data-delay="200"] { animation-delay: 0.4s; }
+.component-item[data-delay="400"] { animation-delay: 0.6s; }
+
+.component-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-2);
+  border-radius: 50%;
+  margin-bottom: var(--spacing-md);
+}
+
+.component-icon i {
+  font-size: 2.5rem;
+  color: white;
+  animation: iconGlow 2s ease-in-out infinite;
+}
+
+.component-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+@keyframes componentSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   Slide 3: ETL Description Styles
+   ========================================================================== */
+
+.etl-description {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: var(--spacing-xl);
+}
+
+.description-content {
+  background: rgba(22, 33, 62, 0.6);
+  backdrop-filter: blur(15px);
+  padding: var(--spacing-xxl);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  animation: descriptionFadeIn var(--transition-slow) ease-out;
+}
+
+.description-content p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  text-align: justify;
+  margin: 0;
+}
+
+@keyframes descriptionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Slide 4: Architecture Flow Styles
+   ========================================================================== */
+
+.architecture-flow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+  margin-top: var(--spacing-xl);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flow-level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.flow-level[data-level="top"] {
+  margin-bottom: var(--spacing-lg);
+}
+
+.flow-level[data-level="middle"] {
+  margin: var(--spacing-lg) 0;
+}
+
+.flow-level[data-level="bottom"] {
+  margin-top: var(--spacing-lg);
+}
+
+.flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  min-width: 150px;
+  transition: all var(--transition-medium);
+  animation: flowItemSlide var(--transition-slow) ease-out;
+  animation-fill-mode: both;
+}
+
+.flow-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--neon-cyan);
+}
+
+.flow-item i {
+  font-size: 2rem;
+  color: var(--neon-blue);
+  margin-bottom: var(--spacing-xs);
+}
+
+.flow-item span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.flow-connector {
+  font-size: 2rem;
+  color: var(--neon-cyan);
+  font-weight: bold;
+  animation: connectorGlow 2s ease-in-out infinite;
+}
+
+.flow-connector.bidirectional {
+  color: var(--neon-purple);
+}
+
+.operations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.operation-item {
+  background: rgba(138, 43, 226, 0.1);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  animation: operationFadeIn var(--transition-medium) ease-out;
+  animation-fill-mode: both;
+  transition: all var(--transition-fast);
+}
+
+.operation-item:hover {
+  background: rgba(138, 43, 226, 0.2);
+  border-color: var(--neon-purple);
+  transform: translateY(-3px);
+}
+
+@keyframes flowItemSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes connectorGlow {
+  0%, 100% { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
+  50% { color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue); }
+}
+
+@keyframes operationFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Slide 5: Technologies Styles
+   ========================================================================== */
+
+.technologies-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xxl);
+  margin-top: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.technology-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: rgba(22, 33, 62, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  transition: all var(--transition-medium);
+  animation: technologySlideIn var(--transition-slow) ease-out;
+  animation-fill-mode: both;
+  min-width: 250px;
+  text-align: center;
+}
+
+.technology-item:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--neon-cyan);
+}
+
+.technology-item[data-delay="0"] { animation-delay: 0.2s; }
+.technology-item[data-delay="200"] { animation-delay: 0.4s; }
+.technology-item[data-delay="400"] { animation-delay: 0.6s; }
+
+.tech-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-2);
+  border-radius: 50%;
+  margin-bottom: var(--spacing-md);
+}
+
+.tech-icon i {
+  font-size: 2.5rem;
+  color: white;
+  animation: iconGlow 2s ease-in-out infinite;
+}
+
+.tech-content h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.tech-content p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+@keyframes technologySlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 
 .content-grid {
   display: grid;
@@ -946,7 +1259,89 @@ body {
 }
 
 /* ==========================================================================
-   Slide 6: Thank You Styles
+   Slide 6: Agent Architecture Styles
+   ========================================================================== */
+
+.architecture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-height: calc(100vh - 200px);
+}
+
+.diagram-container {
+  background: rgba(22, 33, 62, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-medium);
+  animation: diagramSlideIn var(--transition-slow) ease-out;
+  max-width: 80%;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.diagram-container:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--neon-blue);
+}
+
+.architecture-diagram {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  filter: brightness(1.1) contrast(1.05);
+  transition: all var(--transition-medium);
+}
+
+.architecture-diagram:hover {
+  filter: brightness(1.2) contrast(1.1);
+}
+
+.architecture-description {
+  text-align: center;
+  max-width: 800px;
+  animation: descriptionFadeIn var(--transition-slow) ease-out 0.5s;
+  animation-fill-mode: both;
+}
+
+.architecture-description p {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@keyframes diagramSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes descriptionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Slide 7: Thank You Styles
    ========================================================================== */
 
 .thank-you-container {
@@ -1227,14 +1622,12 @@ body {
 }
 
 .presentation.fullscreen .controls-info,
-.presentation.fullscreen .slide-counter,
 .presentation.fullscreen .sound-toggle {
   opacity: 0.3;
   transition: opacity var(--transition-fast);
 }
 
 .presentation.fullscreen:hover .controls-info,
-.presentation.fullscreen:hover .slide-counter,
 .presentation.fullscreen:hover .sound-toggle {
   opacity: 1;
 }
@@ -1256,25 +1649,41 @@ body {
    ========================================================================== */
 
 @media (max-width: 1024px) {
-  .content-grid {
-    grid-template-columns: 1fr;
+  .agent-components {
+    flex-direction: column;
+    align-items: center;
     gap: var(--spacing-lg);
   }
   
-  .timeline-item:nth-child(odd) .timeline-content,
-  .timeline-item:nth-child(even) .timeline-content {
-    margin: 60px var(--spacing-md) 0;
-    text-align: center;
-  }
-  
-  .contact-info {
+  .technologies-container {
     flex-direction: column;
     align-items: center;
+    gap: var(--spacing-lg);
+  }
+  
+  .architecture-flow {
+    gap: var(--spacing-lg);
+  }
+  
+  .flow-level {
+    flex-direction: column;
     gap: var(--spacing-md);
   }
   
-  .capabilities-container {
-    grid-template-columns: 1fr;
+  .flow-connector {
+    transform: rotate(90deg);
+  }
+  
+  .operations-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .description-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .description-content p {
+    font-size: 1.2rem;
   }
 }
 
@@ -1291,13 +1700,28 @@ body {
     font-size: clamp(2.5rem, 10vw, 4rem);
   }
   
-  .applications-grid {
+  .component-item,
+  .technology-item {
+    min-width: auto;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .flow-item {
+    min-width: 120px;
+  }
+  
+  .flow-item span {
+    font-size: 0.9rem;
+  }
+  
+  .operations-grid {
     grid-template-columns: 1fr;
   }
   
-  .capability-item {
-    flex-direction: column;
-    text-align: center;
+  .description-content p {
+    font-size: 1.1rem;
+    text-align: left;
   }
   
   .controls-info {
@@ -1331,8 +1755,17 @@ body {
   .definition-card,
   .capability-item,
   .application-card,
-  .timeline-content {
+  .timeline-content,
+  .diagram-container {
     padding: var(--spacing-md);
+  }
+  
+  .architecture-description p {
+    font-size: 1rem;
+  }
+  
+  .architecture-container {
+    gap: var(--spacing-lg);
   }
 }
 
