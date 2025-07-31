@@ -321,6 +321,11 @@ body {
   width: 100%;
   text-align: center;
   animation: slideContentFadeIn var(--transition-slow) ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .slide.active .slide-content {
@@ -1279,8 +1284,9 @@ body {
   padding: var(--spacing-lg);
   transition: all var(--transition-medium);
   animation: diagramSlideIn var(--transition-slow) ease-out;
-  max-width: 80%;
+  max-width: 95%;
   width: fit-content;
+  transform: scale(1.2);
   display: flex;
   justify-content: center;
   align-items: center;
