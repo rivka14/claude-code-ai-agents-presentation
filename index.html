@@ -111,12 +111,15 @@
             <section class="slide" id="slide3" data-slide="3" role="tabpanel" aria-labelledby="slide3-title">
                 <div class="slide-content">
                     <header class="slide-header">
-                        <div class="title-with-icon">
-                            <i class="fas fa-question-circle problem-icon"></i>
-                            <h2 id="slide3-title" class="slide-title">What is the problem?</h2>
-                        </div>
+                        <h2 id="slide3-title" class="slide-title">What is the problem?</h2>
                         <div class="title-underline"></div>
                     </header>
+                    <div class="problem-visual">
+                        <div class="ai-icon-container">
+                            <i class="fas fa-question-circle problem-icon"></i>
+                            <div class="icon-pulse"></div>
+                        </div>
+                    </div>
                     <!-- <div class="etl-description">
                         <div class="description-content">
                             <p>A multi-agent system for automated ETL workflows. The manager agent receives files from Data Locker along with transformation prompts, then orchestrates the ETL pipeline: a file handler agent uploads data to BigQuery via an MCP server, while an ETL agent executes queries, analyzes schemas, and performs transformations. The system leverages A2A (Agent-to-Agent) communication protocol for seamless integration with Agent Hub, enabling distributed processing and coordination. Built-in data cleaning functions handle problematic arrays to ensure smooth JSON conversions.</p>

@@ -305,6 +305,7 @@ body {
   transform: translateX(100px);
   transition: all var(--transition-slow);
   padding: var(--spacing-xl);
+  text-align: center;
 }
 
 .slide.active {
@@ -326,6 +327,15 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+}
+
+.slide-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
 .slide.active .slide-content {
@@ -1264,11 +1274,18 @@ body {
 }
 
 /* ==========================================================================
-   Slide 3: Problem Icon Styles
+   Slide 3: Problem Visual Styles
    ========================================================================== */
 
+.problem-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--spacing-xxl);
+}
+
 .problem-icon {
-  font-size: 3rem;
+  font-size: 6rem;
   color: var(--neon-purple);
   animation: iconFloat 3s ease-in-out infinite;
   filter: drop-shadow(0 0 20px var(--neon-purple));
