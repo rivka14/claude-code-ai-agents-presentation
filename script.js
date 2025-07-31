@@ -6,7 +6,7 @@
 class PresentationController {
   constructor() {
     this.currentSlide = 1;
-    this.totalSlides = 6;
+    this.totalSlides = 7;
     this.isFullscreen = false;
     this.isPresentationMode = false;
     this.soundEnabled = true;
@@ -160,6 +160,7 @@ class PresentationController {
       case '4':
       case '5':
       case '6':
+      case '7':
         event.preventDefault();
         const slideNum = parseInt(event.key);
         if (slideNum <= this.totalSlides) {
