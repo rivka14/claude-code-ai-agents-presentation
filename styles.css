@@ -1264,6 +1264,47 @@ body {
 }
 
 /* ==========================================================================
+   Slide 3: Problem Icon Styles
+   ========================================================================== */
+
+.problem-icon {
+  font-size: 3rem;
+  color: var(--neon-purple);
+  animation: iconFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px var(--neon-purple));
+}
+
+/* ==========================================================================
+   Slide 4: Solution Visual Styles
+   ========================================================================== */
+
+.solution-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--spacing-xxl);
+}
+
+/* ==========================================================================
+   Slide 5: Architecture Title Styles
+   ========================================================================== */
+
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.architecture-icon {
+  font-size: 3rem;
+  color: var(--neon-blue);
+  animation: iconFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px var(--neon-blue));
+}
+
+/* ==========================================================================
    Slide 6: Agent Architecture Styles
    ========================================================================== */
 
