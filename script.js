@@ -9,7 +9,7 @@ class PresentationController {
     this.totalSlides = 7;
     this.isFullscreen = false;
     this.isPresentationMode = false;
-    this.soundEnabled = true;
+    this.soundEnabled = false;
     this.touchStartX = 0;
     this.touchEndX = 0;
     this.cursorTimeout = null;
@@ -20,7 +20,7 @@ class PresentationController {
     this.slides = document.querySelectorAll('.slide');
     this.navDots = document.querySelectorAll('.nav-dot');
     this.progressFill = document.querySelector('.progress-fill');
-    this.soundToggle = document.getElementById('sound-toggle');
+    // this.soundToggle = document.getElementById('sound-toggle');
     this.loadingScreen = document.getElementById('loading-screen');
     this.controlsInfo = document.getElementById('controls-info');
     
@@ -77,8 +77,8 @@ class PresentationController {
       dot.addEventListener('click', () => this.goToSlide(index + 1));
     });
     
-    // Sound toggle
-    this.soundToggle.addEventListener('click', () => this.toggleSound());
+    // Sound toggle - disabled
+    // this.soundToggle.addEventListener('click', () => this.toggleSound());
     
     // Mouse movement for presentation mode
     document.addEventListener('mousemove', () => this.handleMouseMove());
@@ -263,8 +263,8 @@ class PresentationController {
     this.updateURL();
     this.triggerSlideAnimations(this.currentSlide);
     
-    // Play transition sound
-    this.playTransitionSound();
+    // Play transition sound - disabled
+    // this.playTransitionSound();
     
     // Announce slide change for screen readers
     this.announceSlideChange();
@@ -436,44 +436,19 @@ class PresentationController {
   }
   
   /**
-   * Toggle sound effects
+   * Toggle sound effects - disabled
    */
   toggleSound() {
-    this.soundEnabled = !this.soundEnabled;
-    this.soundToggle.classList.toggle('muted', !this.soundEnabled);
-    
-    const icon = this.soundToggle.querySelector('i');
-    icon.className = this.soundEnabled ? 'fas fa-volume-up' : 'fas fa-volume-mute';
+    // Sound functionality disabled
+    return;
   }
   
   /**
-   * Play transition sound effect
+   * Play transition sound effect - disabled
    */
   playTransitionSound() {
-    if (!this.soundEnabled) return;
-    
-    // Create audio context for sound effects
-    try {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-      
-      oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
-      
-      gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.01);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-      
-      oscillator.start(audioContext.currentTime);
-      oscillator.stop(audioContext.currentTime + 0.1);
-    } catch (error) {
-      // Fallback: no sound if audio context fails
-      console.log('Audio context not supported');
-    }
+    // Sound functionality disabled
+    return;
   }
   
   /**
